@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "9800a4bf-d7b8-4580-ad75-e376d8c93508",
+		"name": "barang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "barangGet",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/barang",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"barang"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barangCreate",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_brg",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "nama_kerajinan",
+							"value": "Dekor",
+							"type": "text"
+						},
+						{
+							"key": "bahan",
+							"value": "Aluminium",
+							"type": "text"
+						},
+						{
+							"key": "harga",
+							"value": "20000",
+							"type": "text"
+						},
+						{
+							"key": "keterangan",
+							"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac facilisis sapien, eu semper nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean malesuada est et risus ultrices, nec fringilla velit porttitor. Ut viverra sapien lacus, ac pretium augue suscipit at. ",
+							"type": "text"
+						},
+						{
+							"key": "id_peng",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "gambar",
+							"type": "file",
+							"src": "/D:/AL_Promotion/c9e2f379-1e3e-44b7-a8bc-fd8c737bbf32200.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/barang",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"barang"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barangUpdate",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_brg",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "id_peng",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "nama_kerajinan",
+							"value": "dummy",
+							"type": "text"
+						},
+						{
+							"key": "harga",
+							"value": "50000",
+							"type": "text"
+						},
+						{
+							"key": "bahan",
+							"value": "aluminium",
+							"type": "text"
+						},
+						{
+							"key": "gambar",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "keterangan",
+							"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac facilisis sapien, eu semper nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean malesuada est et risus ultrices, nec fringilla velit porttitor. ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/barang/11",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"barang",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barangDelete",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/barang/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"barang",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
