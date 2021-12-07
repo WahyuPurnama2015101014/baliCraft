@@ -17,11 +17,11 @@
                 <div class="float-right grid grid-cols-1 md:grid-cols-2 ">
                     <div>
                         <!-- memberikan filter berupa kelompok tani-->
-                        <select id="pengrajin" name="id_peng" class="block w-full py-2 px-4 border border-gray-300 bg-white rounded-l-2xl shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="pengrajin" name="peng" class="block w-full py-2 px-4 border border-gray-300 bg-white rounded-l-2xl shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="">Pilih Pengrajin</option>
                             <!-- menampilkan list kelompok petani-->
                             @foreach ($pengrajin as $item)
-                            <option value="{{$item->id_peng}}" {{(isset($_GET['id_peng'])&&$_GET['id_peng'] == $item->id_peng)?'selected':''}}>
+                            <option value="{{$item->nama_peng}}" {{(isset($_GET['peng'])&&$_GET['peng'] == $item->nama_peng)?'selected':''}}>
                                 {{$item->nama_peng}}
                             </option>
                             @endforeach
@@ -55,7 +55,7 @@
                         <td class=" text-left py-3 px-4">{{$b->nama_kerajinan}}</td>
                         <td class=" text-left py-3 px-4">{{$b->bahan}}</td>
                         <td class=" text-left py-3 px-4">Rp.{{$b->harga}}</td>
-                        <td class=" text-left py-3 px-4">{{$b->pengrajin->nama_peng}}</td>
+                        <td class=" text-left py-3 px-4">{{$b->nama_peng}}</td>
                         <td class=" px-4 py-3 text-center">
                             <form action="{{route('brg.destroy',$b->id_brg)}}" method="POST">
                                 @csrf @method('DELETE')
@@ -70,6 +70,6 @@
                 </tbody>
             </table>
         </div>
-
+        {{$barang->appends(request()->query())->links()}}
     </div>
 </x-admin-layout>

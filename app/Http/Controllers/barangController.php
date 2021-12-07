@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\modelBarang;
 use App\Models\modelPengrajin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class barangController extends Controller
 {
@@ -16,22 +17,18 @@ class barangController extends Controller
     public function index()
     {
         $title = "Daftar Barang";
-        //$barang = new modelBarang;
-        $barang = modelBarang::all();
-        // $key = "Bross";
-        //$barang->where('nama_kerajinan', 'like', '%b%')->dd();
+        $barang = modelBarang::getPengrajin();
         //search
         if (isset($_GET['s']) && $_GET['s'] != null && $_GET['s'] != " ") {
             $s = $_GET['s'];
-            //melakukan query like berdasarkan param nama
-            // error , tidak menampilkan hasil search
-            //$barang = $barang->where('nama_kerajinan', 'like', "%$s%");
-            $barang = $barang->where('nama_kerajinan',  $s);
+            $barang = $barang
+                ->where('nama_kerajinan', 'like', "%$s%");
         }
         //filter
-        if (isset($_GET['id_peng']) && $_GET['id_peng'] != '') {
-            $barang = $barang->where('id_peng', $_GET['id_peng']);
+        if (isset($_GET['peng']) && $_GET['peng'] != '') {
+            $barang = $barang->where('nama_peng', $_GET['peng']);
         }
+        $barang = $barang->paginate(5);
         $pengrajin = modelPengrajin::all();
         return view('admin.barang-tabel', compact('title', 'barang', 'pengrajin'));
     }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\modelBarang;
 use App\Models\modelPengrajin;
 use Illuminate\Http\Request;
@@ -15,27 +16,20 @@ class barangAPIController extends Controller
      */
     public function index()
     {
-        //$title = "Daftar Barang";
-        //$barang = new modelBarang;
-        //$barang = modelBarang::getPengrajin()->paginate(3);
-        $barang = modelBarang::getPengrajin()->get();
-        // $key = "Bross";
-        //$barang->where('nama_kerajinan', 'like', '%b%')->dd();
+        $res['barang'] = modelBarang::getPengrajin();
         //search
-        // if (isset($_GET['s']) && $_GET['s'] != null && $_GET['s'] != " ") {
-        //     $s = $_GET['s'];
-        //     //melakukan query like berdasarkan param nama
-        //     // error , tidak menampilkan hasil search
-        //     //$barang = $barang->where('nama_kerajinan', 'like', "%$s%");
-        //     $barang = $barang->where('nama_kerajinan',  $s);
-        // }
-        // //filter
-        // if (isset($_GET['id_peng']) && $_GET['id_peng'] != '') {
-        //     $barang = $barang->where('id_peng', $_GET['id_peng']);
-        // }
-        //$pengrajin = modelPengrajin::all();
-        //return view('admin.barang-tabel', compact('title', 'barang', 'pengrajin'));
-        return response()->json($barang);
+        if (isset($_GET['s']) && $_GET['s'] != null && $_GET['s'] != " ") {
+            $s = $_GET['s'];
+            $res['barang'] = $res['barang']
+                ->where('nama_kerajinan', 'like', "%$s%");
+        }
+        //filter dengan nama
+        if (isset($_GET['peng']) && $_GET['peng'] != '') {
+            $res['barang'] = $res['barang']->where('nama_peng', $_GET['peng']);
+        }
+        $res['barang'] = $res['barang']->paginate(5);
+        $res['pengrajin'] = modelPengrajin::all();
+        return response()->json($res);
     }
 
     /**
@@ -45,9 +39,8 @@ class barangAPIController extends Controller
      */
     public function create()
     {
-        // $title = "Create Barang";
-        // $pengrajin = modelPengrajin::all();
-        // return view('admin.barang-create', compact('title', 'pengrajin'));
+        $pengrajin = modelPengrajin::all();
+        return response()->json($pengrajin);
     }
 
     /**
@@ -65,7 +58,7 @@ class barangAPIController extends Controller
             'harga' => 'required',
             'keterangan' => '',
             'id_peng' => 'required',
-            'gambar' => 'required|mimes:png,jpg|max:1024'
+            'gambar' => 'required'
         ]);
         try {
             $fileName = time() . $request->file('gambar')->getClientOriginalName();
@@ -105,15 +98,9 @@ class barangAPIController extends Controller
     public function edit($id)
     {
         //menampilkan data edit
-        // $title = "Create Barang ";
-        // $pengrajin = modelPengrajin::all();
-        // $barang = modelBarang::find($id);
-        // if ($barang != NULL) {
-        //     $title = "Edit Data " . $barang->nama_kerajinan;
-        //     return view('admin.barang-create', compact('title', 'pengrajin', 'barang'));
-        // } else {
-        //     return view('admin.barang-create', compact('title', 'pengrajin'));
-        // }
+        $res['pengrajin'] = modelPengrajin::all();
+        $res['barang'] = modelBarang::find($id);
+        return response()->json($res);
     }
 
     /**

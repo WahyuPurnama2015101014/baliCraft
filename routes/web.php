@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [homeController::class, 'index']);
+/*
+Route::get('/', [homeController::class, 'index']);*/
 //routes admin
 Route::get('admin', [adminController::class, 'index'])->middleware(['auth']);
 // Route::get('barang', [barangController::class, 'index']);
@@ -28,11 +28,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('peng', pengrajinController::class);
 });
-
-
 //punya laravel
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('admin/{any}', function () {
+    return view('admin');
+})->where('any', '.*')->middleware(['auth']);

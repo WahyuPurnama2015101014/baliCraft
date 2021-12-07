@@ -2,11 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BaliCraft</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'BaliCraft') }}</title>
+
+    <!-- Scripts -->
+
+    <script src="{{ mix('js/app.js') }}" defer="defer"></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body style="background: url(img/bg.jpg);" class="bg-gray-400 font-sans leading-normal tracking-normal">
@@ -81,7 +94,7 @@
     <div class=" bg-black w-screen h-auto flex ">
         <span class="text-white text-1xl pl-2 mb-10">copyrights @BaliCraft</span>
     </div>
-    <script type="text/javascript" href="{{ mix('js/app.js') }}"></script>
+
 </body>
 
 </html>
